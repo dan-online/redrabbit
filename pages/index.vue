@@ -15,7 +15,9 @@ const user = useCurrentUser();
 
     {{ user?.email }} - {{ user?.displayName }}
 
-    <button v-if="user" @click="() => signOut(auth)">Sign Out</button>
-    <a v-else href="/login">Sign In</a>
+    <div class="mt-2">
+      <button class="btn btn-primary" v-if="user" @click="() => signOut(auth)">Sign Out</button>
+      <a class="btn btn-primary" v-else href="/login">Sign In</a>
+    </div>
   </div>
 </template>

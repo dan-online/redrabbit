@@ -1966,6 +1966,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@matthiesenxyz/unocss-preset-daisyui@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "@matthiesenxyz/unocss-preset-daisyui@npm:0.1.2"
+  dependencies:
+    autoprefixer: "npm:^10.4.19"
+    camelcase: "npm:^8.0.0"
+    parsel-js: "npm:^1.1.2"
+    postcss: "npm:^8.4.38"
+    postcss-js: "npm:^4.0.1"
+  peerDependencies:
+    daisyui: ^4.12.10
+    unocss: ^0.62.3
+  checksum: 10c0/7c0b927c92ea58a9aec50ff24bd9ecdf560aaf31015db6d1f3cc3b3ff015c6ea97e4b8f63751cd187858d85b0774f55f136b1d549c68e3dec502c5431c035caa
+  languageName: node
+  linkType: hard
+
 "@netlify/functions@npm:^2.8.0":
   version: 2.8.2
   resolution: "@netlify/functions@npm:2.8.2"
@@ -3880,7 +3896,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:^10.4.20":
+"autoprefixer@npm:^10.4.19, autoprefixer@npm:^10.4.20":
   version: 10.4.20
   resolution: "autoprefixer@npm:10.4.20"
   dependencies:
@@ -4152,6 +4168,20 @@ __metadata:
   version: 3.1.0
   resolution: "callsites@npm:3.1.0"
   checksum: 10c0/fff92277400eb06c3079f9e74f3af120db9f8ea03bad0e84d9aede54bbe2d44a56cccb5f6cf12211f93f52306df87077ecec5b712794c5a9b5dac6d615a3f301
+  languageName: node
+  linkType: hard
+
+"camelcase-css@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "camelcase-css@npm:2.0.1"
+  checksum: 10c0/1a1a3137e8a781e6cbeaeab75634c60ffd8e27850de410c162cce222ea331cd1ba5364e8fb21c95e5ca76f52ac34b81a090925ca00a87221355746d049c6e273
+  languageName: node
+  linkType: hard
+
+"camelcase@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "camelcase@npm:8.0.0"
+  checksum: 10c0/56c5fe072f0523c9908cdaac21d4a3b3fb0f608fb2e9ba90a60e792b95dd3bb3d1f3523873ab17d86d146e94171305f73ef619e2f538bd759675bc4a14b4bff3
   languageName: node
   linkType: hard
 
@@ -4665,6 +4695,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"css-selector-tokenizer@npm:^0.8":
+  version: 0.8.0
+  resolution: "css-selector-tokenizer@npm:0.8.0"
+  dependencies:
+    cssesc: "npm:^3.0.0"
+    fastparse: "npm:^1.1.2"
+  checksum: 10c0/86f68cc666d41f9d153351677694002a9d00e2609e6abc66fcfd7f580be3d6ecc0929e46a06c621ab28da5febbb54567db9709b819414edae4a36d9ff9133e16
+  languageName: node
+  linkType: hard
+
 "css-tree@npm:^2.3.1":
   version: 2.3.1
   resolution: "css-tree@npm:2.3.1"
@@ -4785,6 +4825,25 @@ __metadata:
   version: 3.1.3
   resolution: "csstype@npm:3.1.3"
   checksum: 10c0/80c089d6f7e0c5b2bd83cf0539ab41474198579584fa10d86d0cafe0642202343cbc119e076a0b1aece191989477081415d66c9fefbf3c957fc2fc4b7009f248
+  languageName: node
+  linkType: hard
+
+"culori@npm:^3":
+  version: 3.3.0
+  resolution: "culori@npm:3.3.0"
+  checksum: 10c0/acd330a8f940dc22f36650ba722c9302a4745fee3c8fb40a27ac27228767e2cba4221c2dc414fce652b82cb264d28f65d8b76d505df402ecf94dbb9e440319e1
+  languageName: node
+  linkType: hard
+
+"daisyui@npm:^4.12.12":
+  version: 4.12.12
+  resolution: "daisyui@npm:4.12.12"
+  dependencies:
+    css-selector-tokenizer: "npm:^0.8"
+    culori: "npm:^3"
+    picocolors: "npm:^1"
+    postcss-js: "npm:^4"
+  checksum: 10c0/12d542638394784b964a0cb47b051eeb7e1170ba87572fe4c8c40352a7583603787778e0b11b14b3cd0aa953396a77d41ad828dcae95a46ec91dbeccf07890fa
   languageName: node
   linkType: hard
 
@@ -5653,6 +5712,13 @@ __metadata:
   bin:
     fxparser: src/cli/cli.js
   checksum: 10c0/71d206c9e137f5c26af88d27dde0108068a5d074401901d643c500c36e95dfd828333a98bda020846c41f5b9b364e2b0e9be5b19b0bdcab5cf31559c07b80a95
+  languageName: node
+  linkType: hard
+
+"fastparse@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "fastparse@npm:1.1.2"
+  checksum: 10c0/c08d6e7ef10c0928426c1963dd4593e2baaf44d223ab1e5ba5d7b30470144b3a4ecb3605958b73754cea3f857ecef00b67c885f07ca2c312b38b67d9d88b84b5
   languageName: node
   linkType: hard
 
@@ -8009,7 +8075,9 @@ __metadata:
     "@commitlint/config-conventional": "npm:^19.5.0"
     "@firebase/app-types": "npm:^0.9.2"
     "@iconify/json": "npm:^2.2.257"
+    "@matthiesenxyz/unocss-preset-daisyui": "npm:^0.1.2"
     "@unocss/nuxt": "npm:^0.63.3"
+    daisyui: "npm:^4.12.12"
     firebase: "npm:^10.14.0"
     firebase-admin: "npm:^12.6.0"
     firebase-functions: "npm:^6.0.1"
@@ -8354,6 +8422,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"parsel-js@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "parsel-js@npm:1.1.2"
+  checksum: 10c0/99e14c2c992ec9c8d4273d1e4267f08a18acb1ec423c98397a196bc293a187b9dbd3359ed89580150ed5203fd8b2becd7a2b01947039b33fdcdbd3ee070556ef
+  languageName: node
+  linkType: hard
+
 "parseurl@npm:~1.3.3":
   version: 1.3.3
   resolution: "parseurl@npm:1.3.3"
@@ -8434,7 +8509,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"picocolors@npm:^1.0.0, picocolors@npm:^1.0.1, picocolors@npm:^1.1.0":
+"picocolors@npm:^1, picocolors@npm:^1.0.0, picocolors@npm:^1.0.1, picocolors@npm:^1.1.0":
   version: 1.1.0
   resolution: "picocolors@npm:1.1.0"
   checksum: 10c0/86946f6032148801ef09c051c6fb13b5cf942eaf147e30ea79edb91dd32d700934edebe782a1078ff859fb2b816792e97ef4dab03d7f0b804f6b01a0df35e023
@@ -8539,6 +8614,17 @@ __metadata:
   peerDependencies:
     postcss: ^8.4.31
   checksum: 10c0/ca00ed1d4e8793fc780039f235fa2caef123d3aa28cae47cc1472ca03b21386c39fae1f11fbf319dcb94c6bda923824067254c7e20e8b00354b47015dc754658
+  languageName: node
+  linkType: hard
+
+"postcss-js@npm:^4, postcss-js@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "postcss-js@npm:4.0.1"
+  dependencies:
+    camelcase-css: "npm:^2.0.1"
+  peerDependencies:
+    postcss: ^8.4.21
+  checksum: 10c0/af35d55cb873b0797d3b42529514f5318f447b134541844285c9ac31a17497297eb72296902967911bb737a75163441695737300ce2794e3bd8c70c13a3b106e
   languageName: node
   linkType: hard
 
@@ -8790,7 +8876,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.43, postcss@npm:^8.4.47":
+"postcss@npm:^8.4.38, postcss@npm:^8.4.43, postcss@npm:^8.4.47":
   version: 8.4.47
   resolution: "postcss@npm:8.4.47"
   dependencies:
