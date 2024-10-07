@@ -24,9 +24,10 @@
 	"packageManager": "yarn@4.5.0",
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.3",
+		"@commitlint/cli": "^19.5.0",
+		"@commitlint/config-conventional": "^19.5.0",
 		"@iconify/json": "^2.2.257",
 		"@unocss/nuxt": "^0.63.3",
-		"commitlint": "^19.5.0",
 		"husky": "^9.1.6",
 		"typescript": "^5.6.2",
 		"unocss": "^0.63.3",
