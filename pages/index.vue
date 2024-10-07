@@ -1,7 +1,7 @@
 <script setup>
-import LogoNuxt from '~icons/logos/nuxt-icon';
+import LogoNuxt from "~icons/logos/nuxt-icon";
 
-import { signOut } from 'firebase/auth';
+import { signOut } from "firebase/auth";
 
 const auth = useFirebaseAuth();
 
