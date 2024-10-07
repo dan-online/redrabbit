@@ -1,0 +1,27 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+
+    - name: Setup Node
+      uses: josh-development/.github/setup-node@main
+      with:
+        version: 22
+
+    - name: Lint
+      run: yarn lint
+
+    - name: Typecheck
+      run: yarn typecheck
+
+    - name: Build
+      run: yarn build
