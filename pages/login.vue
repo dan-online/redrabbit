@@ -8,11 +8,11 @@ import {
 import { type FunctionalComponent, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useFirebaseAuth } from "vuefire";
-
 import MdiGithub from "~icons/mdi/github";
 import MdiGoogle from "~icons/mdi/google";
 import MdiMicrosoft from "~icons/mdi/microsoft";
 import MdiShieldLock from "~icons/mdi/shield-lock";
+
 
 const auth = useFirebaseAuth();
 const route = useRoute();
