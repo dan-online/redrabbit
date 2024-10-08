@@ -8170,7 +8170,7 @@ __metadata:
     firebase-admin: "npm:^12.6.0"
     firebase-functions: "npm:^6.0.1"
     husky: "npm:^9.1.6"
-    nuxt: "npm:^3.13.0"
+    nuxt: "npm:^3.13.2"
     nuxt-vuefire: "npm:^1.0.4"
     typescript: "npm:^5.6.2"
     unocss: "npm:^0.63.3"
@@ -8208,7 +8208,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nuxt@npm:^3.13.0":
+"nuxt@npm:^3.13.2":
   version: 3.13.2
   resolution: "nuxt@npm:3.13.2"
   dependencies:
