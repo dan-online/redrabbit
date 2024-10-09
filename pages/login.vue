@@ -63,7 +63,7 @@ async function signInWithProvider(providerId: keyof typeof providerInstances) {
 </script>
 
 <template>
-	<div class="min-h-screen flex items-center justify-center bg-base-200 w-full">
+	<div class="min-h-dvh flex items-center justify-center bg-base-200 w-full">
 		<div class="flex-col space-y-4">
 			<div class="flex justify-center items-center w-sm lg:w-3xl">
 				<div v-if="error" class="bg-error/10 text-error p-4 text-sm rounded-2xl shadow-md dark:shadow-xl">
