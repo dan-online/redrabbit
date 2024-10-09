@@ -16,7 +16,7 @@ const user = useCurrentUser();
           </div>
         </div>
         <h1 class="text-3xl font-bold">Welcome to RedRabbit</h1>
-        <p class="py-4">Your one-stop solution for modern web applications.</p>
+        <p class="py-4">The only life planner you will ever need.</p>
 
         <div v-if="user" class="flex flex-col items-center">
           <div class="avatar mb-4">

@@ -19,7 +19,7 @@ export default defineConfig({
 	presets: [
 		presetUno(),
 		presetDaisy({
-			themes: ["dracula"],
+			themes: ["luxury"],
 		}),
 		// presetAttributify(),
 		presetWebFonts({
