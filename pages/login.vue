@@ -30,10 +30,10 @@ const providers: {
 	name: string;
 	icon: FunctionalComponent;
 }[] = [
-	{ id: "google", name: "Google", icon: MdiGoogle },
-	{ id: "microsoft", name: "Microsoft", icon: MdiMicrosoft },
-	{ id: "github", name: "GitHub", icon: MdiGithub },
-];
+		{ id: "google", name: "Google", icon: MdiGoogle },
+		{ id: "microsoft", name: "Microsoft", icon: MdiMicrosoft },
+		{ id: "github", name: "GitHub", icon: MdiGithub },
+	];
 
 providerInstances.google.addScope("profile");
 providerInstances.google.addScope("email");
@@ -63,24 +63,23 @@ async function signInWithProvider(providerId: keyof typeof providerInstances) {
 </script>
 
 <template>
-	<div class="login-page min-h-screen flex items-center justify-center bg-base-200 p-4 w-full">
-		<div class="max-w-3xl flex-col space-y-4">
+	<div class="min-h-screen flex items-center justify-center bg-base-200 w-full">
+		<div class="flex-col space-y-4">
 			<div class="flex justify-center items-center w-sm lg:w-3xl">
-				<div v-if="error" class="bg-error/10 text-error p-4 text-sm rounded-2xl shadow-2xl">
+				<div v-if="error" class="bg-error/10 text-error p-4 text-sm rounded-2xl shadow-md dark:shadow-xl">
 					{{ error }}
 				</div>
 			</div>
 
-			<div class="flex w-sm lg:w-3xl bg-base-100 shadow-2xl relative rounded-2xl overflow-hidden">
+			<div class="flex bg-base-100 shadow-md dark:shadow-xl relative rounded-2xl overflow-hidden">
 
 				<div class="w-0 lg:w-1/2">
 					<div class="bg-secondary/10 h-full flex items-center justify-center"></div>
 				</div>
 
 				<div class="w-full lg:w-1/2">
-					<div class="card-body space-y-2 shadow-3xl">
+					<div class="card-body space-y-2">
 						<div class="flex items-center space-x-4 mb-16">
-							<!-- Image on the left -->
 							<div class="w-16 h-16 rounded-2xl bg-secondary/10 flex items-center justify-center">
 								<MdiShieldLock class="w-8 h-8 text-primary" />
 							</div>
@@ -93,12 +92,22 @@ async function signInWithProvider(providerId: keyof typeof providerInstances) {
 							</div>
 						</div>
 
-						<button v-for="provider in providers" :key="provider.id"
-							@click="signInWithProvider(provider.id)" :disabled="isLoading" class="btn w-full bg-base-200 hover:bg-base-300 normal-case text-base font-medium
-						border-none relative">
-							<component :is="provider.icon" class="w-5 h-5 absolute left-4" />
-							<span class="flex-grow text-center">Continue with {{ provider.name }}</span>
-						</button>
+						<div class="form-control">
+							<input type="email" placeholder="Email" class="input bg-base-200 hover:bg-base-300" />
+						</div>
+						<div class="form-control">
+							<input type="password" placeholder="Password" class="input bg-base-200 hover:bg-base-300" />
+						</div>
+
+						<div class="flex-row">
+							<div class="flex space-x-4 justify-center">
+								<button v-for="provider in providers" :key="provider.id"
+									@click="signInWithProvider(provider.id)" :disabled="isLoading" class="btn bg-base-200 hover:bg-base-300 normal-case text-base font-medium
+									border-none relative w-12 h-12 flex justify-center items-center">
+									<component :is="provider.icon" />
+								</button>
+							</div>
+						</div>
 
 						<div class="flex items-center justify-center pt-4 pb-2">
 							<a href="/signup" class="text-secondary text-sm link-hover">Create an account</a>
