@@ -1,14 +1,14 @@
-<script setup>
+<script setup lang="ts">
 import {
 	GithubAuthProvider,
 	GoogleAuthProvider,
 	OAuthProvider,
-	getRedirectResult,
 	signInWithPopup,
 } from "firebase/auth";
-import { ref } from "vue";
+import { type FunctionalComponent, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useFirebaseAuth } from "vuefire";
+
 import MdiGithub from "~icons/mdi/github";
 import MdiGoogle from "~icons/mdi/google";
 import MdiMicrosoft from "~icons/mdi/microsoft";
@@ -16,14 +16,8 @@ import MdiShieldLock from "~icons/mdi/shield-lock";
 
 const auth = useFirebaseAuth();
 const route = useRoute();
-const error = ref(null);
+const error = ref<string | null>(null);
 const isLoading = ref(false);
-
-const providers = [
-	{ id: "google", name: "Google", icon: MdiGoogle },
-	{ id: "microsoft", name: "Microsoft", icon: MdiMicrosoft },
-	{ id: "github", name: "GitHub", icon: MdiGithub },
-];
 
 const providerInstances = {
 	google: new GoogleAuthProvider(),
@@ -31,37 +25,41 @@ const providerInstances = {
 	github: new GithubAuthProvider(),
 };
 
-// Add scopes
+const providers: {
+	id: keyof typeof providerInstances;
+	name: string;
+	icon: FunctionalComponent;
+}[] = [
+	{ id: "google", name: "Google", icon: MdiGoogle },
+	{ id: "microsoft", name: "Microsoft", icon: MdiMicrosoft },
+	{ id: "github", name: "GitHub", icon: MdiGithub },
+];
+
 providerInstances.google.addScope("profile");
 providerInstances.google.addScope("email");
 providerInstances.microsoft.addScope("user.read");
 providerInstances.github.addScope("read:user");
 
-async function signInWithProvider(providerId) {
+async function signInWithProvider(providerId: keyof typeof providerInstances) {
 	isLoading.value = true;
 	error.value = null;
 
 	try {
-		await signInWithPopup(auth, providerInstances[providerId]);
-		if (route.query.redirect) {
-			navigateTo(route.query.redirect);
+		await signInWithPopup(auth!, providerInstances[providerId]);
+
+		const redirect = route.query.redirect as string | undefined;
+
+		if (redirect) {
+			navigateTo(redirect);
 		} else {
 			navigateTo("/");
 		}
 	} catch (err) {
-		console.error(`Failed to sign in with ${providerId}`, err);
-		error.value = err.message;
+		error.value = (err as Error).message;
 	} finally {
 		isLoading.value = false;
 	}
 }
-
-onMounted(() => {
-	getRedirectResult(auth).catch((reason) => {
-		console.error("Failed redirect result", reason);
-		error.value = reason.message;
-	});
-});
 </script>
 
 <template>

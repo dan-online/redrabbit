@@ -16,7 +16,7 @@ export default defineNuxtConfig({
 						strict: true,
 					}),
 				],
-				dts: true,
+				dts: false,
 			}),
 		],
 	},
