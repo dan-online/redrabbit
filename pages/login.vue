@@ -8,6 +8,7 @@ import {
 import { type FunctionalComponent, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useFirebaseAuth } from "vuefire";
+import MdiApple from "~icons/mdi/apple";
 import MdiGithub from "~icons/mdi/github";
 import MdiGoogle from "~icons/mdi/google";
 import MdiMicrosoft from "~icons/mdi/microsoft";
@@ -22,6 +23,7 @@ const providerInstances = {
 	google: new GoogleAuthProvider(),
 	microsoft: new OAuthProvider("microsoft.com"),
 	github: new GithubAuthProvider(),
+	apple: new OAuthProvider("apple.com"),
 };
 
 const providers: {
@@ -29,10 +31,11 @@ const providers: {
 	name: string;
 	icon: FunctionalComponent;
 }[] = [
-	{ id: "google", name: "Google", icon: MdiGoogle },
-	{ id: "microsoft", name: "Microsoft", icon: MdiMicrosoft },
-	{ id: "github", name: "GitHub", icon: MdiGithub },
-];
+		{ id: "google", name: "Google", icon: MdiGoogle },
+		{ id: "microsoft", name: "Microsoft", icon: MdiMicrosoft },
+		{ id: "github", name: "GitHub", icon: MdiGithub },
+		{ id: "apple", name: "Apple", icon: MdiApple },
+	];
 
 providerInstances.google.addScope("profile");
 providerInstances.google.addScope("email");
