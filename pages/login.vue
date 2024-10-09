@@ -99,25 +99,27 @@ async function signInWithProvider(providerId: keyof typeof providerInstances) {
 							<input type="password" placeholder="Password" class="input bg-base-200 hover:bg-base-300" />
 						</div>
 
-						<div class="flex-row">
-							<div class="flex space-x-4 justify-center">
-								<button v-for="provider in providers" :key="provider.id"
-									@click="signInWithProvider(provider.id)" :disabled="isLoading" class="btn bg-base-200 hover:bg-base-300 normal-case text-base font-medium
-									border-none relative w-12 h-12 flex justify-center items-center">
-									<component :is="provider.icon" />
-								</button>
-							</div>
+						<div class="flex justify-center">
+							<button class="btn btn-primary w-full max-w-md border-none">Sign up</button>
 						</div>
 
-						<div class="flex items-center justify-center pt-4 pb-2">
-							<a href="/signup" class="text-secondary text-sm link-hover">Create an account</a>
+						<div class="flex flex-row space-x-4 justify-center">
+							<button v-for="provider in providers" :key="provider.id"
+								@click="signUpWithProvider(provider.id)" :disabled="isLoading"
+								class="btn bg-base-200 hover:bg-base-300 text-base border-none relative h-12 flex-1 flex">
+								<component :is="provider.icon" />
+							</button>
 						</div>
 
-						<div class="flex items-center justify-center text-xs text-base-content/60 pt-6 text-center">
-							By logging in, you agree to our terms and privacy policy
-						</div>
+						<a href="/signup" class="flex items-center justify-between btn h-12 border-none text-sm">
+							<div class="text-sm">Don't have an account?</div>
+							<div class="text-secondary">Sign up</div>
+						</a>
 					</div>
 				</div>
+			</div>
+			<div class="flex items-center justify-center text-xs text-base-content/60 pt-6 text-center">
+				By logging in, you agree to our terms and privacy policy
 			</div>
 		</div>
 	</div>
