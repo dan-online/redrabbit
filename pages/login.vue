@@ -13,7 +13,6 @@ import MdiGoogle from "~icons/mdi/google";
 import MdiMicrosoft from "~icons/mdi/microsoft";
 import MdiShieldLock from "~icons/mdi/shield-lock";
 
-
 const auth = useFirebaseAuth();
 const route = useRoute();
 const error = ref<string | null>(null);
@@ -30,10 +29,10 @@ const providers: {
 	name: string;
 	icon: FunctionalComponent;
 }[] = [
-		{ id: "google", name: "Google", icon: MdiGoogle },
-		{ id: "microsoft", name: "Microsoft", icon: MdiMicrosoft },
-		{ id: "github", name: "GitHub", icon: MdiGithub },
-	];
+	{ id: "google", name: "Google", icon: MdiGoogle },
+	{ id: "microsoft", name: "Microsoft", icon: MdiMicrosoft },
+	{ id: "github", name: "GitHub", icon: MdiGithub },
+];
 
 providerInstances.google.addScope("profile");
 providerInstances.google.addScope("email");
@@ -105,7 +104,7 @@ async function signInWithProvider(providerId: keyof typeof providerInstances) {
 
 						<div class="flex flex-row space-x-4 justify-center">
 							<button v-for="provider in providers" :key="provider.id"
-								@click="signUpWithProvider(provider.id)" :disabled="isLoading"
+								@click="signInWithProvider(provider.id)" :disabled="isLoading"
 								class="btn bg-base-200 hover:bg-base-300 text-base border-none relative h-12 flex-1 flex">
 								<component :is="provider.icon" />
 							</button>
