@@ -7,6 +7,8 @@ export default defineNuxtConfig({
 	devtools: { enabled: true },
 	modules: ["@unocss/nuxt", "nuxt-vuefire", "unplugin-icons/nuxt"],
 
+	css: ["@unocss/reset/tailwind-compat.css"],
+
 	vite: {
 		plugins: [
 			ViteComponents({
