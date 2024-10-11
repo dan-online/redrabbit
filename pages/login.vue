@@ -3,6 +3,7 @@ import {
 	GithubAuthProvider,
 	GoogleAuthProvider,
 	OAuthProvider,
+	signInWithEmailAndPassword,
 	signInWithPopup,
 } from "firebase/auth";
 import { type FunctionalComponent, ref } from "vue";
@@ -11,17 +12,17 @@ import { useFirebaseAuth } from "vuefire";
 import MdiApple from "~icons/mdi/apple";
 import MdiGithub from "~icons/mdi/github";
 import MdiGoogle from "~icons/mdi/google";
-import MdiMicrosoft from "~icons/mdi/microsoft";
 import MdiShieldLock from "~icons/mdi/shield-lock";
 
 const auth = useFirebaseAuth();
 const route = useRoute();
 const error = ref<string | null>(null);
 const isLoading = ref(false);
+const email = ref<string>("");
+const password = ref<string>("");
 
 const providerInstances = {
 	google: new GoogleAuthProvider(),
-	microsoft: new OAuthProvider("microsoft.com"),
 	github: new GithubAuthProvider(),
 	apple: new OAuthProvider("apple.com"),
 };
@@ -32,14 +33,12 @@ const providers: {
 	icon: FunctionalComponent;
 }[] = [
 	{ id: "google", name: "Google", icon: MdiGoogle },
-	{ id: "microsoft", name: "Microsoft", icon: MdiMicrosoft },
 	{ id: "github", name: "GitHub", icon: MdiGithub },
 	{ id: "apple", name: "Apple", icon: MdiApple },
 ];
 
 providerInstances.google.addScope("profile");
 providerInstances.google.addScope("email");
-providerInstances.microsoft.addScope("user.read");
 providerInstances.github.addScope("read:user");
 
 async function signInWithProvider(providerId: keyof typeof providerInstances) {
@@ -50,7 +49,29 @@ async function signInWithProvider(providerId: keyof typeof providerInstances) {
 		await signInWithPopup(auth!, providerInstances[providerId]);
 
 		const redirect = route.query.redirect as string | undefined;
+		if (redirect) {
+			navigateTo(redirect);
+		} else {
+			navigateTo("/");
+		}
+	} catch (err) {
+		error.value = (err as Error).message;
+	} finally {
+		isLoading.value = false;
+	}
+}
 
+async function loginWithEmail() {
+	isLoading.value = true;
+	error.value = null;
+
+	try {
+		if (!email.value || !password.value) {
+			throw new Error("Please enter both email and password");
+		}
+		await signInWithEmailAndPassword(auth!, email.value, password.value);
+
+		const redirect = route.query.redirect as string | undefined;
 		if (redirect) {
 			navigateTo(redirect);
 		} else {
@@ -95,14 +116,20 @@ async function signInWithProvider(providerId: keyof typeof providerInstances) {
 						</div>
 
 						<div class="form-control">
-							<input type="email" placeholder="Email" class="input bg-base-200 hover:bg-base-300" />
+							<input v-model="email" type="email" placeholder="Email" class="input bg-base-200 hover:bg-base-300" />
 						</div>
 						<div class="form-control">
-							<input type="password" placeholder="Password" class="input bg-base-200 hover:bg-base-300" />
+							<input v-model="password" type="password" placeholder="Password" class="input bg-base-200 hover:bg-base-300" />
 						</div>
 
 						<div class="flex justify-center">
-							<button class="btn btn-primary w-full max-w-md border-none">Sign up</button>
+							<button
+								@click="loginWithEmail"
+								class="btn btn-primary w-full max-w-md border-none"
+								:disabled="isLoading || !email || !password"
+							>
+								Sign in
+							</button>
 						</div>
 
 						<div class="flex flex-row space-x-4 justify-center">
@@ -120,6 +147,7 @@ async function signInWithProvider(providerId: keyof typeof providerInstances) {
 					</div>
 				</div>
 			</div>
+
 			<div class="flex items-center justify-center text-xs text-base-content/60 pt-6 text-center">
 				By logging in, you agree to our terms and privacy policy
 			</div>

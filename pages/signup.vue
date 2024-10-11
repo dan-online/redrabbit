@@ -1,16 +1,101 @@
-<script setup>
+<script setup lang="ts">
+import {
+	GithubAuthProvider,
+	GoogleAuthProvider,
+	OAuthProvider,
+	createUserWithEmailAndPassword,
+	signInWithPopup,
+	updateProfile,
+} from "firebase/auth";
+import { type FunctionalComponent, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { useFirebaseAuth } from "vuefire";
 import MdiApple from "~icons/mdi/apple";
 import MdiGithub from "~icons/mdi/github";
 import MdiGoogle from "~icons/mdi/google";
-import MdiMicrosoft from "~icons/mdi/microsoft";
 import MdiShieldLock from "~icons/mdi/shield-lock";
 
-const providers = [
+const auth = useFirebaseAuth();
+const route = useRoute();
+const router = useRouter();
+const error = ref<string | null>(null);
+const isLoading = ref(false);
+
+const name = ref("");
+const email = ref("");
+const password = ref("");
+
+const providerInstances = {
+	google: new GoogleAuthProvider(),
+	github: new GithubAuthProvider(),
+	apple: new OAuthProvider("apple.com"),
+};
+
+const providers: {
+	id: keyof typeof providerInstances;
+	name: string;
+	icon: FunctionalComponent;
+}[] = [
 	{ id: "google", name: "Google", icon: MdiGoogle },
-	{ id: "microsoft", name: "Microsoft", icon: MdiMicrosoft },
 	{ id: "github", name: "GitHub", icon: MdiGithub },
 	{ id: "apple", name: "Apple", icon: MdiApple },
 ];
+
+providerInstances.google.addScope("profile");
+providerInstances.google.addScope("email");
+providerInstances.github.addScope("read:user");
+
+async function signUpWithProvider(providerId: keyof typeof providerInstances) {
+	if (!auth) return;
+
+	isLoading.value = true;
+	error.value = null;
+
+	try {
+		await signInWithPopup(auth, providerInstances[providerId]);
+		handleSuccessfulSignup();
+	} catch (err) {
+		error.value = (err as Error).message;
+	} finally {
+		isLoading.value = false;
+	}
+}
+
+const signUp = async () => {
+	if (!auth) return;
+
+	isLoading.value = true;
+	error.value = null;
+
+	try {
+		const userCredential = await createUserWithEmailAndPassword(
+			auth,
+			email.value,
+			password.value,
+		);
+
+		if (name.value && userCredential.user) {
+			await updateProfile(userCredential.user, {
+				displayName: name.value,
+			});
+		}
+
+		handleSuccessfulSignup();
+	} catch (err) {
+		error.value = (err as Error).message;
+	} finally {
+		isLoading.value = false;
+	}
+};
+
+function handleSuccessfulSignup() {
+	const redirect = route.query.redirect as string | undefined;
+	if (redirect) {
+		router.push(redirect);
+	} else {
+		router.push("/");
+	}
+}
 </script>
 
 <template>
@@ -23,13 +108,12 @@ const providers = [
 			</div>
 
 			<div class="flex bg-base-100 shadow-md dark:shadow-xl relative rounded-2xl overflow-hidden">
-
 				<div class="w-0 lg:w-1/2">
 					<div class="bg-secondary/10 h-full flex items-center justify-center"></div>
 				</div>
 
 				<div class="w-full lg:w-1/2">
-					<div class="card-body space-y-2">
+					<form @submit.prevent="signUp" class="card-body space-y-2">
 						<div class="flex items-center space-x-4 mb-16">
 							<div class="w-16 h-16 rounded-2xl bg-secondary/10 flex items-center justify-center">
 								<MdiShieldLock class="w-8 h-8 text-primary" />
@@ -44,26 +128,52 @@ const providers = [
 						</div>
 
 						<div class="form-control">
-							<input type="text" placeholder="Name"
-								class="input bg-base-200 hover:bg-base-300 border-none" />
+							<input 
+								v-model="name"
+								type="text" 
+								placeholder="Name"
+								required
+								class="input bg-base-200 hover:bg-base-300 border-none" 
+							/>
 						</div>
 						<div class="form-control">
-							<input type="email" placeholder="Email"
-								class="input bg-base-200 hover:bg-base-300 border-none" />
+							<input 
+								v-model="email"
+								type="email" 
+								placeholder="Email"
+								required
+								class="input bg-base-200 hover:bg-base-300 border-none" 
+							/>
 						</div>
 						<div class="form-control">
-							<input type="password" placeholder="Password"
-								class="input bg-base-200 hover:bg-base-300 border-none" />
+							<input 
+								v-model="password"
+								type="password" 
+								placeholder="Password"
+								required
+								class="input bg-base-200 hover:bg-base-300 border-none" 
+							/>
 						</div>
 
 						<div class="flex justify-center">
-							<button class="btn btn-primary w-full max-w-md border-none">Sign up</button>
+							<button 
+								type="submit"
+								:disabled="isLoading || !name || !email || !password"
+								class="btn btn-primary w-full max-w-md border-none"
+							>
+								Sign up
+							</button>
 						</div>
 
 						<div class="flex flex-row space-x-4 justify-center">
-							<button v-for="provider in providers" :key="provider.id"
-								@click="signUpWithProvider(provider.id)" :disabled="isLoading"
-								class="btn bg-base-200 hover:bg-base-300 text-base border-none relative h-12 flex-1 flex">
+							<button 
+								v-for="provider in providers" 
+								:key="provider.id"
+								@click="signUpWithProvider(provider.id)" 
+								:disabled="isLoading"
+								type="button"
+					class="btn bg-base-200 hover:bg-base-300 text-base border-none relative h-12 flex-1 flex"
+				>
 								<component :is="provider.icon" />
 							</button>
 						</div>
@@ -72,8 +182,7 @@ const providers = [
 							<div class="text-sm">Already have an account?</div>
 							<div class="text-secondary">Sign in</div>
 						</a>
-
-					</div>
+					</form>
 				</div>
 			</div>
 			<div class="flex items-center justify-center text-xs text-base-content/60 pt-6 text-center">
