@@ -1,5 +1,4 @@
 <script setup>
-import { useRoute } from "vue-router";
 import MdiApple from "~icons/mdi/apple";
 import MdiGithub from "~icons/mdi/github";
 import MdiGoogle from "~icons/mdi/google";
@@ -12,7 +11,6 @@ const providers = [
 	{ id: "github", name: "GitHub", icon: MdiGithub },
 	{ id: "apple", name: "Apple", icon: MdiApple },
 ];
-
 </script>
 
 <template>
