@@ -11,15 +11,15 @@ const auth = useFirebaseAuth();
 const user = useCurrentUser();
 
 const theme = useCookie("theme", {
-    default: () => "forest" as Theme,
+	default: () => "forest" as Theme,
 });
 
 const setTheme = (t: Theme) => {
-    theme.value = t;
+	theme.value = t;
 };
 
 const signout = () => {
-    signOut(auth!);
+	signOut(auth!);
 };
 </script>
 <template>

@@ -10,6 +10,7 @@
 		"ignore": [
 			".git",
 			".nuxt",
+			".direnv",
 			"node_modules",
 			"dist",
 			"coverage",

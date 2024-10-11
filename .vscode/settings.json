@@ -5,7 +5,11 @@
 	},
 	"[vue]": {
 		"editor.defaultFormatter": "Jota0222.multi-formatter",
-		"multiFormatter.formatterList": ["biomejs.biome", "Vue.volar"]
+		"multiFormatter.formatterList": [
+			"Vue.volar",
+			"biomejs.biome",
+			"biomejs.biome" // for some reason, it needs to be added twice
+		]
 	},
 	"editor.formatOnSave": true,
 	"editor.codeActionsOnSave": {

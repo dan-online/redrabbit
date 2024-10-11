@@ -30,10 +30,10 @@ const providers: {
 	name: string;
 	icon: FunctionalComponent;
 }[] = [
-		{ id: "google", name: "Google", icon: MdiGoogle },
-		{ id: "microsoft", name: "Microsoft", icon: MdiMicrosoft },
-		{ id: "github", name: "GitHub", icon: MdiGithub },
-	];
+	{ id: "google", name: "Google", icon: MdiGoogle },
+	{ id: "microsoft", name: "Microsoft", icon: MdiMicrosoft },
+	{ id: "github", name: "GitHub", icon: MdiGithub },
+];
 
 providerInstances.google.addScope("profile");
 providerInstances.google.addScope("email");
