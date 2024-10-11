@@ -26,7 +26,10 @@ const signout = () => {
     <div class="navbar bg-base-100 z-10 shadow-md ">
         <div class="flex-1">
             <router-link :to="user ? '/dashboard' : '/'" class="text-lg font-bold text-primary">
-                <h1 class="text-2xl font-semibold ml-2">RedRabbit</h1>
+                <h1
+                    class="text-2xl font-semibold ml-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+                    RedRabbit
+                </h1>
             </router-link>
         </div>
         <div class="flex-none">
