@@ -3,6 +3,7 @@ import type { Theme } from "daisyui";
 import { signOut } from "firebase/auth";
 import { themes } from "~/utils/theme";
 
+import CodiconLayoutSidebarLeftOff from "~icons/codicon/layout-sidebar-left-off";
 import IcBaselineAccountCircle from "~icons/ic/baseline-account-circle";
 import MaterialSymbolsNotifications from "~icons/material-symbols/notifications";
 import TablerChevronDown from "~icons/tabler/chevron-down";
@@ -23,22 +24,22 @@ const signout = () => {
 };
 </script>
 <template>
-    <div class="navbar bg-base-100 z-10 shadow-md ">
-        <div class="flex-1">
-            <router-link :to="user ? '/dashboard' : '/'" class="text-lg font-bold text-primary">
-                <h1
-                    class="text-2xl font-semibold ml-2 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-                    RedRabbit
-                </h1>
-            </router-link>
+    <div class="navbar p-0 -ml-1 flex justify-between items-center border-b border-accent/10">
+        <div class="left space-x-4 flex items-center align-middle px-4">
+            <label for="drawer" class="btn btn-ghost btn-square drawer-button lg:hidden">
+                <component :is=CodiconLayoutSidebarLeftOff class="text-xl" />
+            </label>
+
+            <Breadcrumbs />
         </div>
-        <div class="flex-none">
+
+        <div class="flex-none space-x-4 flex items-center align-middle px-4">
             <div class="dropdown dropdown-end">
-                <div tabindex="0" role="button" class="btn min-h-0 h-10 btn-secondary m-1">
+                <div tabindex="0" role="button" class="btn min-h-0 h-10 btn-secondary m-1 text-xs">
                     {{ theme }}
                     <TablerChevronDown class="w-4 h-4 ml-1"></TablerChevronDown>
                 </div>
-                <ul tabindex="0" class="dropdown-content menu bg-base-300 rounded-box z-[1] w-80 p-2 shadow">
+                <ul tabindex="0" class="dropdown-content menu bg-base-300 rounded-box z-[1] w-80 p-2 shadow-lg">
                     <div class="flex flex-wrap gap-2">
                         <div v-for="t in themes" class="rounded-md overflow-hidden" :class="{
                             'opacity-50': theme === t,
@@ -50,16 +51,16 @@ const signout = () => {
                     </div>
                 </ul>
             </div>
-            <router-link to="/dashboard/notifications" v-if="user" class="btn btn-ghost ml-4 btn-circle">
+            <router-link to="/notifications" v-if="user" class="btn btn-ghost btn-circle">
                 <div class="indicator">
                     <MaterialSymbolsNotifications class="text-2xl"></MaterialSymbolsNotifications>
                     <span class="indicator-item badge badge-secondary badge-sm">15</span>
                 </div>
             </router-link>
-            <div v-if="user" class="dropdown dropdown-end ml-4">
+            <div v-if="user" class="dropdown dropdown-end">
                 <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                     <div class="w-10 rounded-full">
-                        <img v-if="user.photoURL" :src="user.photoURL" alt="profile">
+                        <img v-if="user.photoURL" :src="user.photoURL" alt="profile" referrerpolicy="no-referrer">
                         <IcBaselineAccountCircle v-else class="h-full w-full"></IcBaselineAccountCircle>
                     </div>
                 </label>
