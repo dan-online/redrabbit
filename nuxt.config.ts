@@ -37,11 +37,18 @@ export default defineNuxtConfig({
 			key: process.env.RECAPTCHA_SECRET_KEY,
 		},
 		config: {
-			apiKey: process.env.FIREBASE_API_KEY,
-			authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-			projectId: process.env.FIREBASE_PROJECT_ID,
-			appId: process.env.FIREBASE_APP_ID,
-			// there could be other properties depending on the project
+			apiKey: "AIzaSyASl3_I-3gGfbCYWqc1Th5e7UPk8a3mc_Y",
+			authDomain: "redrabbits.firebaseapp.com",
+			databaseURL:
+				"https://redrabbits-default-rtdb.europe-west1.firebasedatabase.app",
+			projectId: "redrabbits",
+			storageBucket: "redrabbits.appspot.com",
+			messagingSenderId: "492750302227",
+			appId: "1:492750302227:web:eb7bc1ff2d15dc3b0ca3e6",
+			measurementId: "G-NYCNLF4ZHE",
+		},
+		admin: {
+			serviceAccount: process.env.GOOGLE_APPLICATION_CREDENTIALS,
 		},
 	},
 });

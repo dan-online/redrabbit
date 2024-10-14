@@ -1,4 +1,4 @@
-import { doc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
 	if (
@@ -15,13 +15,18 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 			});
 		}
 
-		const db = useFirestore();
+		const db = useFirestore(useFirebaseApp().name);
+		const userDoc = await getDoc(doc(db, "users", user.uid));
 
-		// get user from firebase
-		const userDoc = useDocument(doc(db, "users", user.uid));
+		console.log(userDoc.data());
 
-		await userDoc.promise.value;
-
-		console.log(userDoc.data.value);
+		if (!userDoc.exists()) {
+			return navigateTo({
+				path: "/profile/setup",
+				query: {
+					redirect: to.fullPath,
+				},
+			});
+		}
 	}
 });
