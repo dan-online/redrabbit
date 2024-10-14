@@ -56,7 +56,7 @@ const open = useCookie<boolean>("sidebar");
 			<div class="space-y-0">
 
 				<div class="flex flex-row justify-between items-center navbar -mb-2">
-					<h1 class="text-lg font-base ml-2">
+					<h1 class="text-xl font-base ml-2">
 						RedRabbit
 					</h1>
 					<button class="btn btn-ghost btn-square lg:hidden" @click="() => open = !open">
@@ -65,9 +65,9 @@ const open = useCookie<boolean>("sidebar");
 				</div>
 
 				<div v-for="(item, index) in navItems" :key="index" class="mx-2">
-					<router-link :to="item.to" class="btn btn-ghost btn-block text-xs justify-start font-light">
+					<router-link :to="item.to" class="btn btn-ghost btn-block text-sm justify-start font-light">
 						<div class="flex items center justify-left text-left">
-							<component :is="item.icon" class="w-4 h-4"></component>
+							<component :is="item.icon" class="w-5 h-5"></component>
 						</div>
 						<div class="flex items-center justify-left text-left">
 							{{ item.label }}
@@ -77,8 +77,8 @@ const open = useCookie<boolean>("sidebar");
 			</div>
 
 			<div class="mx-2">
-				<router-link to="/settings" class="btn btn-ghost btn-block text-xs justify-start font-light">
-					<component :is="MaterialSymbolsSettingsOutlineRounded" class="w-4 h-4"></component>
+				<router-link to="/settings" class="btn btn-ghost btn-block text-sm justify-start font-light">
+					<component :is="MaterialSymbolsSettingsOutlineRounded" class="w-5 h-5"></component>
 					Settings
 				</router-link>
 			</div>
@@ -88,8 +88,8 @@ const open = useCookie<boolean>("sidebar");
 
 <style scoped>
 .btn {
-	min-height: 2rem;
-	height: 2rem;
+	min-height: 2.5rem;
+	height: 2.5rem;
 	padding: 0.5rem;
 }
 </style>

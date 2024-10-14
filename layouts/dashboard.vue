@@ -12,14 +12,14 @@ const greaterThanLg = breakpoints.greaterOrEqual("lg");
 </script>
 <template>
     <div>
-        <div class="drawer" :class="{ 'drawer-open': open || greaterThanLg }">
+        <div class="drawer" :class="{ 'drawer-open': greaterThanLg }">
             <input type="checkbox" class="drawer-toggle" v-model="open" />
             <div class="drawer-content">
                 <DashboardNavbar />
                 <slot />
             </div>
             <div class="drawer-side drawer-overlay">
-                <!-- <label for="drawer" aria-label="close sidebar" class="drawer-overlay"></label> -->
+                <label for="drawer" aria-label="close sidebar" class="drawer-overlay" @click="open = false"></label>
                 <DashboardSidebar />
             </div>
         </div>
