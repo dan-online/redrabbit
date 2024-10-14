@@ -18,15 +18,15 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 		const db = useFirestore(useFirebaseApp().name);
 		const userDoc = await getDoc(doc(db, "users", user.uid));
 
-		console.log(userDoc.data());
+		// console.log(userDoc.data());
 
-		if (!userDoc.exists()) {
-			return navigateTo({
-				path: "/profile/setup",
-				query: {
-					redirect: to.fullPath,
-				},
-			});
-		}
+		// if (!userDoc.exists()) {
+		// 	return navigateTo({
+		// 		path: "/profile/setup",
+		// 		query: {
+		// 			redirect: to.fullPath,
+		// 		},
+		// 	});
+		// }
 	}
 });

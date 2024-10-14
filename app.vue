@@ -9,18 +9,6 @@ useHead({
 	htmlAttrs: {
 		"data-theme": theme,
 	},
-	link: [
-		{
-			rel: "stylesheet",
-			href: "https://cdn.jsdelivr.net/npm/daisyui@4.12.13/dist/full.css",
-			type: "text/css",
-		},
-		{
-			rel: "stylesheet",
-			href: "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css",
-			type: "text/css",
-		},
-	],
 });
 </script>
 <template>

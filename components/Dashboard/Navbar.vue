@@ -22,15 +22,17 @@ const setTheme = (t: Theme) => {
 const signout = () => {
 	signOut(auth!);
 };
+
+const open = useCookie<boolean>("sidebar");
 </script>
 <template>
     <div class="navbar p-0 -ml-1 flex justify-between items-center border-b border-accent/10">
         <div class="left space-x-4 flex items-center align-middle px-4">
-            <label for="drawer" class="btn btn-ghost btn-square drawer-button lg:hidden">
+            <button @click="() => open = !open" for="drawer" class="btn btn-ghost btn-square drawer-button lg:hidden">
                 <component :is=CodiconLayoutSidebarLeftOff class="text-xl" />
-            </label>
+            </button>
 
-            <Breadcrumbs />
+            <DashboardBreadcrumbs />
         </div>
 
         <div class="flex-none space-x-4 flex items-center align-middle px-4">

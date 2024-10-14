@@ -47,53 +47,49 @@ const navItems = {
 	},
 };
 
-const closeSidebar = () => {
-	const drawer = document.getElementById("drawer") as HTMLInputElement;
-	drawer.checked = false;
-};
+const open = useCookie<boolean>("sidebar");
 </script>
 
 <template>
-    <div class="flex flex-col h-screen justify-between bg-base-300 w-48 border-r border-accent/10">
-        <div class="h-full flex flex-col justify-between mb-2">
-            <div class="space-y-0">
+	<div class="flex flex-col h-screen justify-between bg-base-300 w-48 border-r border-accent/10">
+		<div class="h-full flex flex-col justify-between mb-2">
+			<div class="space-y-0">
 
-                <div class="flex flex-row justify-between items-center navbar -mb-2">
-                    <h1
-                        class="text-lg font-base ml-2">
-                        RedRabbit
-                    </h1>
-                    <button class="btn btn-ghost btn-square lg:hidden" @click="closeSidebar">
-                        <component :is=CodiconLayoutSidebarLeft class="text-sm" />
-                    </button>
-                </div>
+				<div class="flex flex-row justify-between items-center navbar -mb-2">
+					<h1 class="text-lg font-base ml-2">
+						RedRabbit
+					</h1>
+					<button class="btn btn-ghost btn-square lg:hidden" @click="() => open = !open">
+						<component :is=CodiconLayoutSidebarLeft class="text-sm" />
+					</button>
+				</div>
 
-                <div v-for="(item, index) in navItems" :key="index" class="mx-2">
-                    <router-link :to="item.to" class="btn btn-ghost btn-block text-xs justify-start font-light">
-                        <div class="flex items center justify-left text-left">
-                            <component :is="item.icon" class="w-4 h-4"></component>
-                        </div>
-                        <div class="flex items-center justify-left text-left">
-                            {{ item.label }}
-                        </div>
-                    </router-link>
-                </div>
-            </div>
+				<div v-for="(item, index) in navItems" :key="index" class="mx-2">
+					<router-link :to="item.to" class="btn btn-ghost btn-block text-xs justify-start font-light">
+						<div class="flex items center justify-left text-left">
+							<component :is="item.icon" class="w-4 h-4"></component>
+						</div>
+						<div class="flex items-center justify-left text-left">
+							{{ item.label }}
+						</div>
+					</router-link>
+				</div>
+			</div>
 
-            <div class="mx-2">
-                <router-link to="/settings" class="btn btn-ghost btn-block text-xs justify-start font-light">
-                    <component :is="MaterialSymbolsSettingsOutlineRounded" class="w-4 h-4"></component>
-                    Settings
-                </router-link>
-            </div>
-        </div>
-    </div>
+			<div class="mx-2">
+				<router-link to="/settings" class="btn btn-ghost btn-block text-xs justify-start font-light">
+					<component :is="MaterialSymbolsSettingsOutlineRounded" class="w-4 h-4"></component>
+					Settings
+				</router-link>
+			</div>
+		</div>
+	</div>
 </template>
 
- <style scoped>
-    .btn {
-        min-height: 2rem;
-        height: 2rem;
-        padding: 0.5rem;
-    }
+<style scoped>
+.btn {
+	min-height: 2rem;
+	height: 2rem;
+	padding: 0.5rem;
+}
 </style>
