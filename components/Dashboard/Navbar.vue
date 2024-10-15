@@ -12,7 +12,7 @@ const auth = useFirebaseAuth();
 const user = useCurrentUser();
 
 const theme = useCookie("theme", {
-	default: () => "forest" as Theme,
+    default: () => "forest" as Theme,
 });
 
 const open = useCookie("sidebar", {
@@ -20,11 +20,11 @@ const open = useCookie("sidebar", {
 });
 
 const setTheme = (t: Theme) => {
-	theme.value = t;
+    theme.value = t;
 };
 
 const signout = () => {
-	signOut(auth!);
+    signOut(auth!);
 };
 
 const toggleSidebar = () => {
@@ -36,13 +36,14 @@ const toggleSidebar = () => {
     <div class="navbar p-0 flex justify-between items-center border-b border-accent/10 z-10 bg-base-100">
         <div class="left space-x-2 flex items-center align-middle px-2">
             <button class="btn btn-ghost btn-square" @click="toggleSidebar">
-                <component :is="open ? CodiconLayoutSidebarLeft: CodiconLayoutSidebarLeftOff" class="text-lg"></component>
+                <component :is="open ? CodiconLayoutSidebarLeft : CodiconLayoutSidebarLeftOff" class="text-lg">
+                </component>
             </button>
             <h1 class="text-xl font-base ml-2">
-                        RedRabbit
-                    </h1>
-                    <DashboardBreadcrumbs class="pl-24" />
-                </div>
+                RedRabbit
+            </h1>
+            <DashboardBreadcrumbs class="pl-24" />
+        </div>
 
         <div class="flex-none space-x-2 flex items-center align-middle px-3">
             <div class="dropdown dropdown-end">

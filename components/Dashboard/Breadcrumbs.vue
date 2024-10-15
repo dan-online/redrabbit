@@ -7,13 +7,13 @@ import MaterialSymbolsHomeOutlineRounded from "~icons/material-symbols/home-outl
 const route = useRoute();
 
 const breadcrumbs = computed(() => {
-	const paths = route.path.split("/").filter(Boolean);
-	return paths.map((path, index) => {
-		const to = `/${paths.slice(0, index + 1).join("/")}`;
-		const label = path.charAt(0).toUpperCase() + path.slice(1);
+    const paths = route.path.split("/").filter(Boolean);
+    return paths.map((path, index) => {
+        const to = `/${paths.slice(0, index + 1).join("/")}`;
+        const label = path.charAt(0).toUpperCase() + path.slice(1);
         const icon = MaterialSymbolsHomeOutlineRounded;
-		return { to, label, icon }
-	});
+        return { to, label, icon }
+    });
 });
 </script>
 <template>
