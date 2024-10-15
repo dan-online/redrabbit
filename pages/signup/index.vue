@@ -5,7 +5,6 @@ import {
 	OAuthProvider,
 	createUserWithEmailAndPassword,
 	signInWithPopup,
-	updateProfile,
 } from "firebase/auth";
 import { type FunctionalComponent, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -21,9 +20,9 @@ const router = useRouter();
 const error = ref<string | null>(null);
 const isLoading = ref(false);
 
-const name = ref("");
 const email = ref("");
 const password = ref("");
+const confirmPassword = ref("");
 
 const providerInstances = {
 	google: new GoogleAuthProvider(),
@@ -74,12 +73,6 @@ const signUp = async () => {
 			password.value,
 		);
 
-		if (name.value && userCredential.user) {
-			await updateProfile(userCredential.user, {
-				displayName: name.value,
-			});
-		}
-
 		handleSuccessfulSignup();
 	} catch (err) {
 		error.value = (err as Error).message;
@@ -126,16 +119,6 @@ function handleSuccessfulSignup() {
 								</p>
 							</div>
 						</div>
-
-						<div class="form-control">
-							<input 
-								v-model="name"
-								type="text" 
-								placeholder="Name"
-								required
-								class="input bg-base-200 hover:bg-base-300 border-none" 
-							/>
-						</div>
 						<div class="form-control">
 							<input 
 								v-model="email"
@@ -154,11 +137,20 @@ function handleSuccessfulSignup() {
 								class="input bg-base-200 hover:bg-base-300 border-none" 
 							/>
 						</div>
+						 <div class="form-control">
+							<input
+								v-model="confirmPassword"
+								type="password"
+								placeholder="Confirm Password"
+								required
+								class="input bg-base-200 hover:bg-base-300 border-none"
+							/>
+						 </div>
 
 						<div class="flex justify-center">
 							<button 
 								type="submit"
-								:disabled="isLoading || !name || !email || !password"
+								:disabled="isLoading || !email || !password || password !== confirmPassword"
 								class="btn btn-primary w-full max-w-md border-none"
 							>
 								Sign up
