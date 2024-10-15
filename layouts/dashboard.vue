@@ -1,27 +1,43 @@
 <script setup lang="ts">
-import { useBreakpoints } from "@vueuse/core";
+import { onMounted, ref } from "vue";
+
 const open = useCookie("sidebar", {
-	default: () => false,
+  default: () => false,
 });
 
-const breakpoints = useBreakpoints({
-	lg: 1024,
-});
+const sidebarHeight = ref('100vh');
 
-const greaterThanLg = breakpoints.greaterOrEqual("lg");
+onMounted(() => {
+  const updateSidebarHeight = () => {
+    const navbar = document.querySelector(".navbar") as HTMLElement;
+    if (navbar) {
+      sidebarHeight.value = `calc(100vh - ${navbar.clientHeight}px)`;
+    }
+  };
+
+  updateSidebarHeight();
+  window.addEventListener('resize', updateSidebarHeight);
+
+  return () => {
+    window.removeEventListener('resize', updateSidebarHeight);
+  };
+});
 </script>
+
 <template>
-    <div>
-        <div class="drawer" :class="{ 'drawer-open': greaterThanLg }">
-            <input type="checkbox" class="drawer-toggle" v-model="open" />
-            <div class="drawer-content">
-                <DashboardNavbar />
-                <slot />
-            </div>
-            <div class="drawer-side drawer-overlay">
-                <label for="drawer" aria-label="close sidebar" class="drawer-overlay" @click="open = false"></label>
-                <DashboardSidebar />
-            </div>
-        </div>
+  <div class="h-dvh">
+    <div class="sticky top-0 z-10">
+      <DashboardNavbar />
     </div>
+    <div class="flex flex-row">
+      <div 
+        class="sticky top-0 z-5 transition-position duration-300 ease-in-out" 
+        :class="{ '-translate-x-full': !open }"
+        :style="{ height: sidebarHeight }"
+      >
+        <DashboardSidebar />
+      </div>
+      <slot />
+    </div>
+  </div>
 </template>
