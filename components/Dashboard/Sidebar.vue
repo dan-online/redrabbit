@@ -13,6 +13,7 @@ import MaterialSymbolsLeaderboardRounded from "~icons/material-symbols/leaderboa
 import MaterialSymbolsTaskAltRounded from "~icons/material-symbols/task-alt-rounded";
 import MaterialSymbolsTrophyRounded from "~icons/material-symbols/trophy";
 import MaterialSymbolsTrophyOutlineRounded from "~icons/material-symbols/trophy-outline-rounded";
+import ProfileDropdown from './ProfileDropdown.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -102,13 +103,7 @@ const signout = () => {
                 </label>
                 <ul tabindex="0"
                     class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-52">
-                    <li class="justify-between">
-                        <router-link class="btn btn-ghost flex" to="/profile/settings">Profile Settings
-                            <span class="badge w-10 text-xs">New</span>
-                        </router-link>
-                    </li>
-                    <div class="divider mt-0 mb-0"></div>
-                    <li><button class="btn btn-ghost" @click="signout">Logout</button></li>
+                    <ProfileDropdown :signout="signout" />
                 </ul>
             </div>
 		</div>
