@@ -6,7 +6,7 @@ const props = defineProps<{
 
 <template>
   <ul tabindex="0"
-    class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-full min-w-[200px] max-w-xs">
+    class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-full min-w-[200px] max-w-xs mb-2">
     <li>
       <router-link class="btn btn-ghost justify-between w-full" to="/profile/settings">
         <span>Profile Settings</span>
