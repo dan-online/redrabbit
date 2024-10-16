@@ -4,7 +4,7 @@
 		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[vue]": {
-		"editor.defaultFormatter": "Jota0222.multi-formatter",
+		"editor.defaultFormatter": "Vue.volar",
 		"multiFormatter.formatterList": [
 			"Vue.volar",
 			"biomejs.biome",

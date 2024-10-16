@@ -32,7 +32,7 @@ onMounted(() => {
         <div class="flex flex-row">
             <div class="sticky top-0 z-5 transition-position duration-300 ease-in-out"
                 :class="{ '-translate-x-full': !open }" :style="{ height: sidebarHeight }">
-                <DashboardSidebar />
+                <Sidebar />
             </div>
             <slot />
         </div>
