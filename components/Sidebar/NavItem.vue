@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import type { PropType } from 'vue';
-import type { NavItem } from '~/composables/useNavItems';
+import type { PropType } from "vue";
+import type { NavItem } from "~/composables/useNavItems";
 
 const props = defineProps({
-    item: {
-        type: Object as PropType<NavItem>,
-        required: true
-    },
-    isActive: {
-        type: Boolean,
-        required: true
-    }
+	item: {
+		type: Object as PropType<NavItem>,
+		required: true,
+	},
+	isActive: {
+		type: Boolean,
+		required: true,
+	},
 });
 </script>
 

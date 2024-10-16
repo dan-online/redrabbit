@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
-  signout: () => void
+	signout: () => void;
 }>();
 </script>
 

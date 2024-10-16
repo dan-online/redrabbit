@@ -10,7 +10,8 @@
 		"postinstall": "nuxt prepare",
 		"prepare": "husky",
 		"lint": "biome ci",
-		"typecheck": "nuxt typecheck"
+		"typecheck": "nuxt typecheck",
+		"format": "biome format --write ."
 	},
 	"dependencies": {
 		"daisyui": "^4.12.13",

@@ -12,25 +12,24 @@ const auth = useFirebaseAuth();
 const user = useCurrentUser();
 
 const theme = useCookie("theme", {
-    default: () => "forest" as Theme,
+	default: () => "forest" as Theme,
 });
 
 const open = useCookie("sidebar", {
-    default: () => false,
+	default: () => false,
 });
 
 const setTheme = (t: Theme) => {
-    theme.value = t;
+	theme.value = t;
 };
 
 const signout = () => {
-    signOut(auth!);
+	signOut(auth!);
 };
 
 const toggleSidebar = () => {
-    open.value = !open.value;
+	open.value = !open.value;
 };
-
 </script>
 <template>
     <div class="navbar p-0 flex justify-between items-center border-b border-accent/10 z-10 bg-base-100">

@@ -2,25 +2,25 @@
 import { onMounted, ref } from "vue";
 
 const open = useCookie("sidebar", {
-    default: () => false,
+	default: () => false,
 });
 
-const sidebarHeight = ref('100vh');
+const sidebarHeight = ref("100vh");
 
 onMounted(() => {
-    const updateSidebarHeight = () => {
-        const navbar = document.querySelector(".navbar") as HTMLElement;
-        if (navbar) {
-            sidebarHeight.value = `calc(100vh - ${navbar.clientHeight}px)`;
-        }
-    };
+	const updateSidebarHeight = () => {
+		const navbar = document.querySelector(".navbar") as HTMLElement;
+		if (navbar) {
+			sidebarHeight.value = `calc(100vh - ${navbar.clientHeight}px)`;
+		}
+	};
 
-    updateSidebarHeight();
-    window.addEventListener('resize', updateSidebarHeight);
+	updateSidebarHeight();
+	window.addEventListener("resize", updateSidebarHeight);
 
-    return () => {
-        window.removeEventListener('resize', updateSidebarHeight);
-    };
+	return () => {
+		window.removeEventListener("resize", updateSidebarHeight);
+	};
 });
 </script>
 

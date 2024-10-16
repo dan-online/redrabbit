@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { signOut } from 'firebase/auth';
-import { useRouter } from 'vue-router';
+import { signOut } from "firebase/auth";
+import { useRouter } from "vue-router";
 import IcBaselineAccountCircle from "~icons/ic/baseline-account-circle";
 import ProfileDropdown from "./ProfileDropdown.vue";
 
@@ -9,8 +9,8 @@ const auth = useFirebaseAuth();
 const user = useCurrentUser();
 
 const signout = () => {
-    signOut(auth!);
-    router.push("/");
+	signOut(auth!);
+	router.push("/");
 };
 </script>
 

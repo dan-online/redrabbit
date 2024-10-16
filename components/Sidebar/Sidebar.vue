@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import { useRoute } from 'vue-router';
-import { useNavItems } from '~/composables/useNavItems';
-import NavItem from './NavItem.vue';
-import UserProfile from './UserProfile.vue';
+import { useRoute } from "vue-router";
+import { useNavItems } from "~/composables/useNavItems";
+import NavItem from "./NavItem.vue";
+import UserProfile from "./UserProfile.vue";
 
 const route = useRoute();
 const { navigationItems } = useNavItems();
 const open = useCookie<boolean>("sidebar");
 
 const isActive = (path: string) => {
-    return route.path === path || route.path.startsWith(path);
+	return route.path === path || route.path.startsWith(path);
 };
 </script>
 
