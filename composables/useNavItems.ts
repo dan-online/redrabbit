@@ -9,6 +9,8 @@ import MaterialSymbolsHomeOutlineRounded from "~icons/material-symbols/home-outl
 import MaterialSymbolsHomeRounded from "~icons/material-symbols/home-rounded";
 import MaterialSymbolsLeaderboardOutlineRounded from "~icons/material-symbols/leaderboard-outline-rounded";
 import MaterialSymbolsLeaderboardRounded from "~icons/material-symbols/leaderboard-rounded";
+import MaterialSymbolsShoppingCartOutlineRounded from "~icons/material-symbols/shopping-cart-outline-rounded";
+import MaterialSymbolsShoppingCartRounded from "~icons/material-symbols/shopping-cart-rounded";
 import MaterialSymbolsTaskAltRounded from "~icons/material-symbols/task-alt-rounded";
 
 export function useNavItems() {
@@ -25,17 +27,17 @@ export function useNavItems() {
 			selectedIcon: MaterialSymbolsTaskAltRounded,
 			to: "/tasks",
 		},
-		achievements: {
-			label: "Achievements",
-			icon: MaterialSymbolsLeaderboardOutlineRounded,
-			selectedIcon: MaterialSymbolsLeaderboardRounded,
-			to: "/achievements",
-		},
 		calendar: {
 			label: "Calendar",
 			icon: MaterialSymbolsCalendarTodayOutlineRounded,
 			selectedIcon: MaterialSymbolsCalendarTodayRounded,
 			to: "/calendar",
+		},
+		achievements: {
+			label: "Achievements",
+			icon: MaterialSymbolsLeaderboardOutlineRounded,
+			selectedIcon: MaterialSymbolsLeaderboardRounded,
+			to: "/achievements",
 		},
 		friends: {
 			label: "Friends",
@@ -48,6 +50,12 @@ export function useNavItems() {
 			icon: MaterialSymbolsLeaderboardOutlineRounded,
 			selectedIcon: MaterialSymbolsLeaderboardRounded,
 			to: "/leaderboard",
+		},
+		shop: {
+			label: "Shop",
+			icon: MaterialSymbolsShoppingCartOutlineRounded,
+			selectedIcon: MaterialSymbolsShoppingCartRounded,
+			to: "/shop",
 		},
 	});
 
