@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { Theme } from "daisyui";
-import { signOut } from "firebase/auth";
 import { useCurrentUser, useFirebaseAuth } from "vuefire";
 import { COOKIE_NAMES, DEFAULT_THEME } from "~/utils/constants";
 import { themes } from "~/utils/theme";
@@ -18,12 +17,6 @@ const isSidebarOpen = useCookie<boolean>(COOKIE_NAMES.SIDEBAR, {
 
 const setTheme = (newTheme: Theme) => {
 	theme.value = newTheme;
-};
-
-const handleSignOut = async () => {
-	if (auth) {
-		await signOut(auth);
-	}
 };
 
 const toggleSidebar = () => {
