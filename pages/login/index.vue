@@ -1,17 +1,9 @@
 <script setup lang="ts">
-import {
-	GithubAuthProvider,
-	GoogleAuthProvider,
-	OAuthProvider,
-	signInWithEmailAndPassword,
-	signInWithPopup,
-} from "firebase/auth";
-import { type FunctionalComponent, ref } from "vue";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { ref } from "vue";
 import { useRoute } from "vue-router";
 import { useFirebaseAuth } from "vuefire";
-import MdiApple from "~icons/mdi/apple";
-import MdiGithub from "~icons/mdi/github";
-import MdiGoogle from "~icons/mdi/google";
+import { useFirebaseAuthProviders } from "~/utils/firebaseAuthProviders";
 import MdiShieldLock from "~icons/mdi/shield-lock";
 
 const auth = useFirebaseAuth();
@@ -21,25 +13,7 @@ const isLoading = ref(false);
 const email = ref<string>("");
 const password = ref<string>("");
 
-const providerInstances = {
-	google: new GoogleAuthProvider(),
-	github: new GithubAuthProvider(),
-	apple: new OAuthProvider("apple.com"),
-};
-
-const providers: {
-	id: keyof typeof providerInstances;
-	name: string;
-	icon: FunctionalComponent;
-}[] = [
-	{ id: "google", name: "Google", icon: MdiGoogle },
-	{ id: "github", name: "GitHub", icon: MdiGithub },
-	{ id: "apple", name: "Apple", icon: MdiApple },
-];
-
-providerInstances.google.addScope("profile");
-providerInstances.google.addScope("email");
-providerInstances.github.addScope("read:user");
+const [providers, providerInstances] = useFirebaseAuthProviders();
 
 async function signInWithProvider(providerId: keyof typeof providerInstances) {
 	isLoading.value = true;
@@ -89,7 +63,8 @@ async function loginWithEmail() {
 	<div class="min-h-dvh flex items-center justify-center bg-base-200 w-full">
 		<div class="flex-col space-y-4">
 			<div class="flex justify-center items-center w-sm lg:w-3xl">
-				<div v-if="error" class="bg-error/10 text-error p-4 text-sm rounded-2xl shadow-md dark:shadow-xl w-sm lg:w-3xl">
+				<div v-if="error"
+					class="bg-error/10 text-error p-4 text-sm rounded-2xl shadow-md dark:shadow-xl w-sm lg:w-3xl">
 					{{ error }}
 				</div>
 			</div>
@@ -116,18 +91,17 @@ async function loginWithEmail() {
 						</div>
 
 						<div class="form-control">
-							<input v-model="email" type="email" placeholder="Email" class="input bg-base-200 hover:bg-base-300" />
+							<input v-model="email" type="email" placeholder="Email"
+								class="input bg-base-200 hover:bg-base-300" />
 						</div>
 						<div class="form-control">
-							<input v-model="password" type="password" placeholder="Password" class="input bg-base-200 hover:bg-base-300" />
+							<input v-model="password" type="password" placeholder="Password"
+								class="input bg-base-200 hover:bg-base-300" />
 						</div>
 
 						<div class="flex justify-center">
-							<button
-								@click="loginWithEmail"
-								class="btn btn-primary w-full max-w-md border-none"
-								:disabled="isLoading || !email || !password"
-							>
+							<button @click="loginWithEmail" class="btn btn-primary w-full max-w-md border-none"
+								:disabled="isLoading || !email || !password">
 								Sign in
 							</button>
 						</div>

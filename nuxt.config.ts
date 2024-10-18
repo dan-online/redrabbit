@@ -6,7 +6,6 @@ export default defineNuxtConfig({
 	compatibilityDate: "2024-04-03",
 	devtools: { enabled: true },
 	modules: ["@unocss/nuxt", "nuxt-vuefire", "unplugin-icons/nuxt"],
-	css: ["~/assets/css/global.css"],
 
 	vite: {
 		plugins: [

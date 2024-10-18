@@ -1,17 +1,9 @@
 <script setup lang="ts">
-import {
-	GithubAuthProvider,
-	GoogleAuthProvider,
-	OAuthProvider,
-	createUserWithEmailAndPassword,
-	signInWithPopup,
-} from "firebase/auth";
-import { type FunctionalComponent, ref } from "vue";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useFirebaseAuth } from "vuefire";
-import MdiApple from "~icons/mdi/apple";
-import MdiGithub from "~icons/mdi/github";
-import MdiGoogle from "~icons/mdi/google";
+import { useFirebaseAuthProviders } from "~/utils/firebaseAuthProviders";
 import MdiShieldLock from "~icons/mdi/shield-lock";
 
 const auth = useFirebaseAuth();
@@ -24,25 +16,7 @@ const email = ref("");
 const password = ref("");
 const confirmPassword = ref("");
 
-const providerInstances = {
-	google: new GoogleAuthProvider(),
-	github: new GithubAuthProvider(),
-	apple: new OAuthProvider("apple.com"),
-};
-
-const providers: {
-	id: keyof typeof providerInstances;
-	name: string;
-	icon: FunctionalComponent;
-}[] = [
-	{ id: "google", name: "Google", icon: MdiGoogle },
-	{ id: "github", name: "GitHub", icon: MdiGithub },
-	{ id: "apple", name: "Apple", icon: MdiApple },
-];
-
-providerInstances.google.addScope("profile");
-providerInstances.google.addScope("email");
-providerInstances.github.addScope("read:user");
+const [providers, providerInstances] = useFirebaseAuthProviders();
 
 async function signUpWithProvider(providerId: keyof typeof providerInstances) {
 	if (!auth) return;
@@ -95,7 +69,8 @@ function handleSuccessfulSignup() {
 	<div class="min-h-dvh flex items-center justify-center bg-base-200 w-full">
 		<div class="flex-col space-y-4">
 			<div class="flex justify-center items-center w-sm lg:w-3xl">
-				<div v-if="error" class="bg-error/10 text-error p-4 text-sm rounded-2xl shadow-md dark:shadow-xl w-sm lg:w-3xl">
+				<div v-if="error"
+					class="bg-error/10 text-error p-4 text-sm rounded-2xl shadow-md dark:shadow-xl w-sm lg:w-3xl">
 					{{ error }}
 				</div>
 			</div>
@@ -120,52 +95,30 @@ function handleSuccessfulSignup() {
 							</div>
 						</div>
 						<div class="form-control">
-							<input 
-								v-model="email"
-								type="email" 
-								placeholder="Email"
-								required
-								class="input bg-base-200 hover:bg-base-300 border-none" 
-							/>
+							<input v-model="email" type="email" placeholder="Email" required
+								class="input bg-base-200 hover:bg-base-300 border-none" />
 						</div>
 						<div class="form-control">
-							<input 
-								v-model="password"
-								type="password" 
-								placeholder="Password"
-								required
-								class="input bg-base-200 hover:bg-base-300 border-none" 
-							/>
+							<input v-model="password" type="password" placeholder="Password" required
+								class="input bg-base-200 hover:bg-base-300 border-none" />
 						</div>
-						 <div class="form-control">
-							<input
-								v-model="confirmPassword"
-								type="password"
-								placeholder="Confirm Password"
-								required
-								class="input bg-base-200 hover:bg-base-300 border-none"
-							/>
-						 </div>
+						<div class="form-control">
+							<input v-model="confirmPassword" type="password" placeholder="Confirm Password" required
+								class="input bg-base-200 hover:bg-base-300 border-none" />
+						</div>
 
 						<div class="flex justify-center">
-							<button 
-								type="submit"
+							<button type="submit"
 								:disabled="isLoading || !email || !password || password !== confirmPassword"
-								class="btn btn-primary w-full max-w-md border-none"
-							>
+								class="btn btn-primary w-full max-w-md border-none">
 								Sign up
 							</button>
 						</div>
 
 						<div class="flex flex-row space-x-4 justify-center">
-							<button 
-								v-for="provider in providers" 
-								:key="provider.id"
-								@click="signUpWithProvider(provider.id)" 
-								:disabled="isLoading"
-								type="button"
-					class="btn bg-base-200 hover:bg-base-300 text-base border-none relative h-12 flex-1 flex"
-				>
+							<button v-for="provider in providers" :key="provider.id"
+								@click="signUpWithProvider(provider.id)" :disabled="isLoading" type="button"
+								class="btn bg-base-200 hover:bg-base-300 text-base border-none relative h-12 flex-1 flex">
 								<component :is="provider.icon" />
 							</button>
 						</div>
