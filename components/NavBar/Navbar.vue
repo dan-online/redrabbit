@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { useCookie } from "#app";
 import type { Theme } from "daisyui";
 import { signOut } from "firebase/auth";
 import { useCurrentUser, useFirebaseAuth } from "vuefire";

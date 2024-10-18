@@ -8,6 +8,7 @@
 	"files": {
 		"ignoreUnknown": false,
 		"ignore": [
+			".output",
 			".git",
 			".nuxt",
 			".direnv",
