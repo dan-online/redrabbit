@@ -52,10 +52,10 @@ export function useNavItems() {
 			to: "/progressionTree",
 		},
 		social: {
-			label: "Friends",
+			label: "Social",
 			icon: MaterialSymbolsGroupOutlineRounded,
 			selectedIcon: MaterialSymbolsGroupRounded,
-			to: "/friends",
+			to: "/social",
 		},
 		achievements: {
 			label: "Achievements",
