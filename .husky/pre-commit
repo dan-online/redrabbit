@@ -1,0 +1,6 @@
+staged_files=$(git diff --cached --name-only --diff-filter=ACM)
+
+yarn biome format $staged_files --write
+yarn biome check $staged_files --write
+
+git add $staged_files
