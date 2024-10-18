@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
 
 	const verifiedIdToken = await adminAuth.verifySessionCookie(token, true);
 
-	event.context.user = verifiedIdToken;
+	event.context.firebaseUser = verifiedIdToken;
 	event.context.adminApp = adminApp;
 	event.context.adminAuth = adminAuth;
 });

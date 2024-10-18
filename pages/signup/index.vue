@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useFirebaseAuth } from "vuefire";
-import { useFirebaseAuthProviders } from "~/utils/firebaseAuthProviders";
+import { useFirebaseAuthProviders } from "~/composables/useFirebaseAuthProviders";
 import MdiShieldLock from "~icons/mdi/shield-lock";
 
 const auth = useFirebaseAuth();
