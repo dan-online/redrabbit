@@ -2,10 +2,6 @@
 import type { Theme } from "daisyui";
 import { signOut } from "firebase/auth";
 import { useCurrentUser, useFirebaseAuth } from "vuefire";
-import DashboardBreadcrumbs from "~/components/NavBar/Breadcrumbs.vue";
-import NotificationBell from "~/components/NavBar/NotificationBell.vue";
-import SidebarToggle from "~/components/NavBar/SidebarToggle.vue";
-import ThemeSelector from "~/components/NavBar/ThemeSelector.vue";
 import { COOKIE_NAMES, DEFAULT_THEME } from "~/utils/constants";
 import { themes } from "~/utils/theme";
 
@@ -38,17 +34,17 @@ const toggleSidebar = () => {
 <template>
     <nav class="navbar p-0 flex justify-between items-center border-b border-accent/10 z-10 bg-base-100">
         <div class="left space-x-2 flex items-center align-middle px-2">
-            <SidebarToggle :is-open="isSidebarOpen" @toggle="toggleSidebar" />
+            <CoreNavbarSidebarToggle :is-open="isSidebarOpen" @toggle="toggleSidebar" />
             <h1 class="text-xl font-base ml-2">
                 RedRabbit
             </h1>
-            <DashboardBreadcrumbs class="pl-24" />
+            <CoreNavbarBreadcrumbs class="pl-24" />
         </div>
 
         <div class="flex-none space-x-2 flex items-center align-middle px-3">
-            <ThemeSelector :current-theme="theme" :themes="themes" @theme-change="setTheme" />
+            <CoreNavbarThemeSelector :current-theme="theme" :themes="themes" @theme-change="setTheme" />
 
-            <NotificationBell v-if="user" :count="15" />
+            <CoreNavbarNotificationBell v-if="user" :count="15" />
         </div>
     </nav>
 </template>

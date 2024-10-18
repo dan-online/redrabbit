@@ -9,6 +9,8 @@ export default defineNuxtConfig({
 
 	css: ["@unocss/reset/tailwind-compat.css"],
 
+	components: true,
+
 	vite: {
 		plugins: [
 			ViteComponents({

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import Navbar from "~/components/NavBar/Navbar.vue";
 
 const open = useCookie("sidebar", {
 	default: () => false,
@@ -28,12 +27,12 @@ onMounted(() => {
 <template>
     <div class="h-dvh">
         <div class="sticky top-0 z-10">
-            <Navbar />
+            <CoreNavbar />
         </div>
         <div class="flex flex-row">
             <div class="sticky top-0 z-5 transition-position duration-300 ease-in-out"
                 :class="{ '-translate-x-full': !open }" :style="{ height: sidebarHeight }">
-                <Sidebar />
+                <CoreSidebar />
             </div>
             <slot />
         </div>
