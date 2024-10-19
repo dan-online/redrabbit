@@ -1,3 +1,5 @@
+import type { Theme as DaisyUITheme } from "daisyui";
+
 export function useCustomThemes() {
 	const themes = {
 		redrobin: {
@@ -64,8 +66,50 @@ export function useCustomThemes() {
 
 	const getThemeNames = () => Object.keys(themes);
 
+	const customThemes = [...getThemeNames()] as const;
+
+	const daisyUIThemes: DaisyUITheme[] = [
+		"light",
+		"dark",
+		"cupcake",
+		"bumblebee",
+		"emerald",
+		"corporate",
+		"synthwave",
+		"retro",
+		"cyberpunk",
+		"valentine",
+		"halloween",
+		"garden",
+		"forest",
+		"aqua",
+		"lofi",
+		"pastel",
+		"fantasy",
+		"wireframe",
+		"black",
+		"luxury",
+		"dracula",
+		"cmyk",
+		"autumn",
+		"business",
+		"acid",
+		"lemonade",
+		"night",
+		"coffee",
+		"winter",
+	];
+
+	const allThemes = [...daisyUIThemes, ...customThemes] as (
+		| DaisyUITheme
+		| (typeof customThemes)[number]
+	)[];
+
 	return {
-		...themes,
+		themes,
 		getThemeNames,
+		customThemes,
+		daisyUIThemes,
+		allThemes,
 	};
 }
