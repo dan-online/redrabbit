@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useCurrentUser, useFirebaseAuth } from "vuefire";
+import type { CustomTheme } from "~/types/CustomTheme";
 import { COOKIE_NAMES, DEFAULT_THEME } from "~/utils/constants";
 
 const auth = useFirebaseAuth();

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import type { CustomTheme } from "~/utils/theme";
+import type { CustomTheme } from "~/types/CustomTheme";
 
 interface Props {
 	currentTheme: CustomTheme;
