@@ -1,6 +1,12 @@
-import type { Theme } from "daisyui";
+import type { Theme as DaisyUITheme } from "daisyui";
+const { getThemeNames } = useCustomThemes();
 
-export const themes: Theme[] = [
+// Define custom themes
+const customThemes = [...getThemeNames()] as const;
+
+export type CustomTheme = DaisyUITheme | (typeof customThemes)[number];
+
+const daisyUIThemes: DaisyUITheme[] = [
 	"light",
 	"dark",
 	"cupcake",
@@ -30,7 +36,6 @@ export const themes: Theme[] = [
 	"night",
 	"coffee",
 	"winter",
-	"dim",
-	"nord",
-	"sunset",
 ];
+
+export const themes: CustomTheme[] = [...daisyUIThemes, ...customThemes];

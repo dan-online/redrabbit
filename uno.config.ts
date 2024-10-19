@@ -5,14 +5,14 @@ import {
 	presetUno,
 	presetWebFonts,
 } from "unocss";
+import { themes as allThemes } from "~/utils/theme";
 
 export default defineConfig({
 	presets: [
 		presetUno(),
 		presetDaisy({
-			themes: true,
+			themes: allThemes,
 		}),
-		// presetAttributify(),
 		presetWebFonts({
 			provider: "bunny",
 			fonts: {

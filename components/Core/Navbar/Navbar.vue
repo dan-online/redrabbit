@@ -1,13 +1,11 @@
 <script lang="ts" setup>
-import type { Theme } from "daisyui";
 import { useCurrentUser, useFirebaseAuth } from "vuefire";
 import { COOKIE_NAMES, DEFAULT_THEME } from "~/utils/constants";
-import { themes } from "~/utils/theme";
 
 const auth = useFirebaseAuth();
 const user = useCurrentUser();
 
-const theme = useCookie<Theme>(COOKIE_NAMES.THEME, {
+const theme = useCookie<CustomTheme>(COOKIE_NAMES.THEME, {
 	default: () => DEFAULT_THEME,
 });
 
@@ -15,7 +13,7 @@ const isSidebarOpen = useCookie<boolean>(COOKIE_NAMES.SIDEBAR, {
 	default: () => false,
 });
 
-const setTheme = (newTheme: Theme) => {
+const setTheme = (newTheme: CustomTheme) => {
 	theme.value = newTheme;
 };
 

@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import type { Theme } from "daisyui";
 import { ref } from "vue";
+import type { CustomTheme } from "~/utils/theme";
 
 interface Props {
-	currentTheme: Theme;
-	themes: Theme[];
+	currentTheme: CustomTheme;
+	themes: CustomTheme[];
 }
 
 const props = defineProps<Props>();
-const emit = defineEmits<(e: "theme-change", theme: Theme) => void>();
+const emit = defineEmits<(e: "theme-change", theme: CustomTheme) => void>();
 
 const isOpen = ref(false);
 
@@ -16,7 +16,7 @@ const toggleDropdown = () => {
 	isOpen.value = !isOpen.value;
 };
 
-const selectTheme = (theme: Theme) => {
+const selectTheme = (theme: CustomTheme) => {
 	emit("theme-change", theme);
 	isOpen.value = false;
 };
