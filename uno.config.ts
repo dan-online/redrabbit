@@ -5,112 +5,24 @@ import {
 	presetUno,
 	presetWebFonts,
 } from "unocss";
-
-function useCustomThemes(): Record<string, Record<string, string>> {
-	const themes: Record<string, Record<string, string>> = {
-		redrobin: {
-			"color-scheme": "light",
-			primary: "#E63946",
-			"primary-content": "#FFFFFF",
-			secondary: "#457B9D",
-			"secondary-content": "#FFFFFF",
-			accent: "#F1C40F",
-			"accent-content": "#1D3557",
-			neutral: "#1D3557",
-			"neutral-content": "#F1FAEE",
-			"base-100": "#F1FAEE",
-			"base-200": "#E9F2EA",
-			"base-300": "#D8E2DC",
-			"base-content": "#1D3557",
-			info: "#A8DADC",
-			success: "#2ECC71",
-			warning: "#FFA500",
-			error: "#C0392B",
-			"--rounded-box": "0.5rem",
-			"--rounded-btn": "0.3rem",
-			"--rounded-badge": "1.9rem",
-			"--animation-btn": "0.25s",
-			"--animation-input": "0.2s",
-			"--btn-text-case": "uppercase",
-			"--btn-focus-scale": "0.95",
-			"--border-btn": "1px",
-			"--tab-border": "1px",
-			"--tab-radius": "0.5rem",
-			"--font-family": "'Poppins', sans-serif",
-		},
-		raharth: {
-			"color-scheme": "dark",
-			primary: "#6A0DAD",
-			"primary-content": "#FFFFFF",
-			secondary: "#00A86B",
-			"secondary-content": "#FFFFFF",
-			accent: "#FF7F50",
-			"accent-content": "#2C3E50",
-			neutral: "#2C3E50",
-			"neutral-content": "#ECF0F1",
-			"base-100": "#1A202C",
-			"base-200": "#2D3748",
-			"base-300": "#4A5568",
-			"base-content": "#ECF0F1",
-			info: "#3498DB",
-			success: "#27AE60",
-			warning: "#F39C12",
-			error: "#E74C3C",
-			"--rounded-box": "1rem",
-			"--rounded-btn": "0.5rem",
-			"--rounded-badge": "1.9rem",
-			"--animation-btn": "0.3s",
-			"--animation-input": "0.2s",
-			"--btn-text-case": "uppercase",
-			"--btn-focus-scale": "1.05",
-			"--border-btn": "2px",
-			"--tab-border": "2px",
-			"--tab-radius": "0.75rem",
-			"--font-family": "'Roboto', sans-serif",
-		},
-	};
-
-	return themes;
-}
+import { useCustomThemes } from "~/composables/useThemes";
 
 export default defineConfig({
 	presets: [
 		presetUno(),
 		presetDaisy({
-			themes: [
-				"light",
-				"dark",
-				"cupcake",
-				"bumblebee",
-				"emerald",
-				"corporate",
-				"synthwave",
-				"retro",
-				"cyberpunk",
-				"valentine",
-				"halloween",
-				"garden",
-				"forest",
-				"aqua",
-				"lofi",
-				"pastel",
-				"fantasy",
-				"wireframe",
-				"black",
-				"luxury",
-				"dracula",
-				"cmyk",
-				"autumn",
-				"business",
-				"acid",
-				"lemonade",
-				"night",
-				"coffee",
-				"winter",
-				...Object.entries(useCustomThemes()).map(([name, theme]) => ({
-					[name]: theme,
-				})),
-			],
+			themes: (() => {
+				const customThemes = useCustomThemes();
+				return customThemes.allThemes.map((theme) => {
+					if (customThemes.customThemeNames.includes(theme)) {
+						return {
+							[theme]:
+								customThemes.themes[theme as keyof typeof customThemes.themes],
+						};
+					}
+					return theme;
+				});
+			})(),
 		}),
 		presetWebFonts({
 			provider: "bunny",

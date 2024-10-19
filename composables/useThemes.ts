@@ -64,10 +64,6 @@ export function useCustomThemes() {
 		},
 	};
 
-	const getThemeNames = () => Object.keys(themes);
-
-	const customThemes = [...getThemeNames()] as const;
-
 	const daisyUIThemes: DaisyUITheme[] = [
 		"light",
 		"dark",
@@ -100,15 +96,12 @@ export function useCustomThemes() {
 		"winter",
 	];
 
-	const allThemes = [...daisyUIThemes, ...customThemes] as (
-		| DaisyUITheme
-		| (typeof customThemes)[number]
-	)[];
+	const customThemeNames = Object.keys(themes);
+	const allThemes = [...daisyUIThemes, ...customThemeNames];
 
 	return {
 		themes,
-		getThemeNames,
-		customThemes,
+		customThemeNames,
 		daisyUIThemes,
 		allThemes,
 	};
