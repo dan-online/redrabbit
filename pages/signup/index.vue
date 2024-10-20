@@ -26,7 +26,7 @@ async function signUpWithProvider(providerId: keyof typeof providerInstances) {
 
 	try {
 		await signInWithPopup(auth, providerInstances[providerId]);
-		handleSuccessfulSignup();
+		router.push("/dashboard");
 	} catch (err) {
 		error.value = (err as Error).message;
 	} finally {
@@ -41,28 +41,14 @@ const signUp = async () => {
 	error.value = null;
 
 	try {
-		const userCredential = await createUserWithEmailAndPassword(
-			auth,
-			email.value,
-			password.value,
-		);
-
-		handleSuccessfulSignup();
+		await createUserWithEmailAndPassword(auth, email.value, password.value);
+		navigateTo("/dashboard");
 	} catch (err) {
 		error.value = (err as Error).message;
 	} finally {
 		isLoading.value = false;
 	}
 };
-
-function handleSuccessfulSignup() {
-	const redirect = route.query.redirect as string | undefined;
-	if (redirect) {
-		router.push(redirect);
-	} else {
-		router.push("/");
-	}
-}
 </script>
 
 <template>

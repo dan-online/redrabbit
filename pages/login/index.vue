@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { ref } from "vue";
-import { useRoute } from "vue-router";
 import { useFirebaseAuth } from "vuefire";
 import { useFirebaseAuthProviders } from "~/composables/useFirebaseAuthProviders";
 import MdiShieldLock from "~icons/mdi/shield-lock";
 
 const auth = useFirebaseAuth();
-const route = useRoute();
 const error = ref<string | null>(null);
 const isLoading = ref(false);
 const email = ref<string>("");
@@ -21,13 +19,7 @@ async function signInWithProvider(providerId: keyof typeof providerInstances) {
 
 	try {
 		await signInWithPopup(auth!, providerInstances[providerId]);
-
-		const redirect = route.query.redirect as string | undefined;
-		if (redirect) {
-			navigateTo(redirect);
-		} else {
-			navigateTo("/");
-		}
+		navigateTo("/dashboard");
 	} catch (err) {
 		error.value = (err as Error).message;
 	} finally {
@@ -44,13 +36,7 @@ async function loginWithEmail() {
 			throw new Error("Please enter both email and password");
 		}
 		await signInWithEmailAndPassword(auth!, email.value, password.value);
-
-		const redirect = route.query.redirect as string | undefined;
-		if (redirect) {
-			navigateTo(redirect);
-		} else {
-			navigateTo("/");
-		}
+		navigateTo("/dashboard");
 	} catch (err) {
 		error.value = (err as Error).message;
 	} finally {
