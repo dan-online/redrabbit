@@ -5,13 +5,13 @@ import {
 	presetUno,
 	presetWebFonts,
 } from "unocss";
-import { useCustomThemes } from "./composables/useThemes";
+import { allThemes } from "./utils/themes";
 
 export default defineConfig({
 	presets: [
 		presetUno(),
 		presetDaisy({
-			themes: useCustomThemes().all,
+			themes: allThemes,
 		}),
 		presetWebFonts({
 			provider: "bunny",
