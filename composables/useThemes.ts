@@ -1,7 +1,7 @@
 import type { Theme as DaisyUITheme } from "daisyui";
 
 export function useCustomThemes() {
-	const themes = {
+	const customThemes = {
 		raharth: {
 			"color-scheme": "dark",
 			primary: "#FF00FF",
@@ -179,11 +179,15 @@ export function useCustomThemes() {
 		"winter",
 	];
 
-	const customThemeNames = Object.keys(themes);
+	const customThemeNames = Object.keys(customThemes);
 	const allThemes = [...daisyUIThemes, ...customThemeNames];
 
 	return {
-		themes,
+		all: [...daisyUIThemes, customThemes] as (
+			| DaisyUITheme
+			| Record<string, Record<string, string>>
+		)[],
+		themes: customThemes,
 		customThemeNames,
 		daisyUIThemes,
 		allThemes,
