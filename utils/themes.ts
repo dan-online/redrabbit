@@ -106,7 +106,7 @@ export const customThemes = {
 		"--flicker-animation": "flicker 0.5s ease-in-out infinite",
 		"--heat-distortion": "distort 3s ease-in-out infinite",
 	},
-	roseDark: {
+	rose_dark: {
 		"color-scheme": "dark",
 		primary: "#C21E56",
 		"primary-content": "#FFFFFF",
@@ -128,7 +128,7 @@ export const customThemes = {
 		"--petal-animation": "petalFall 5s ease-in-out infinite",
 		"--thorn-border": "1px solid #C21E56",
 	},
-	roseLight: {
+	rose_light: {
 		"color-scheme": "light",
 		primary: "#FF7E9B",
 		"primary-content": "#000000",

@@ -1,25 +1,15 @@
 <script lang="ts" setup>
-import { useCurrentUser, useFirebaseAuth } from "vuefire";
+import { useCurrentUser } from "vuefire";
 import { useCustomThemes } from "~/composables/useThemes";
-import type { CustomTheme } from "~/types/CustomTheme";
-import { COOKIE_NAMES, DEFAULT_THEME } from "~/utils/constants";
+import { COOKIE_NAMES } from "~/utils/constants";
 
-const auth = useFirebaseAuth();
 const user = useCurrentUser();
 
 const { allThemes } = useCustomThemes();
 
-const theme = useCookie<CustomTheme>(COOKIE_NAMES.THEME, {
-	default: () => DEFAULT_THEME,
-});
-
 const isSidebarOpen = useCookie<boolean>(COOKIE_NAMES.SIDEBAR, {
 	default: () => false,
 });
-
-const setTheme = (newTheme: CustomTheme) => {
-	theme.value = newTheme;
-};
 
 const toggleSidebar = () => {
 	isSidebarOpen.value = !isSidebarOpen.value;
@@ -37,7 +27,7 @@ const toggleSidebar = () => {
         </div>
 
         <div class="flex-none space-x-2 flex items-center align-middle px-3">
-            <CoreNavbarThemeSelector :current-theme="theme" :themes="allThemes" @theme-change="setTheme" />
+            <CoreNavbarThemeSelector />
 
             <CoreNavbarNotificationBell v-if="user" :count="15" />
         </div>
