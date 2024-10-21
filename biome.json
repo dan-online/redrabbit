@@ -8,8 +8,10 @@
 	"files": {
 		"ignoreUnknown": false,
 		"ignore": [
+			".output",
 			".git",
 			".nuxt",
+			".direnv",
 			"node_modules",
 			"dist",
 			"coverage",
