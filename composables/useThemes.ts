@@ -129,6 +129,28 @@ export function useCustomThemes() {
 			"--petal-animation": "petalFall 5s ease-in-out infinite",
 			"--thorn-border": "1px solid #C21E56",
 		},
+		roseLight: {
+			"color-scheme": "light",
+			primary: "#FF7E9B",
+			"primary-content": "#000000",
+			secondary: "#FF97B5",
+			"secondary-content": "#000000",
+			accent: "#FFADC7",
+			"accent-content": "#FFFFFF",
+			neutral: "#FFE3EC",
+			"neutral-content": "#FF7E9B",
+			"base-100": "#FFFFFF",
+			"base-200": "#FFE7ED",
+			"base-300": "#FFD6DD",
+			"base-content": "#FF7E9B",
+			info: "#87CEFA",
+			success: "#32CD32",
+			warning: "#FFD700",
+			error: "#DC143C",
+			"--salmon-gradient": "linear-gradient(45deg, #FF7E9B, #FF97B5, #FFADC7)",
+			"--wave-animation": "wave 5s ease-in-out infinite",
+			"--soft-border": "1px solid #FF7E9B",
+		},
 	};
 
 	const daisyUIThemes: DaisyUITheme[] = [
